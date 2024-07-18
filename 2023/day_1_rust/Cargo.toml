@@ -1,0 +1,8 @@
+[workspace]
+revision = "2021"
+
+members = [
+    "common",
+    "part_1",
+    "part_2",
+]
