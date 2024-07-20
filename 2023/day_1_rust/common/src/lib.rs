@@ -1,14 +1,8 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+use std::{fs::File, io::{self, BufReader}};
+use std::io::BufRead;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub fn input_lines(path: &str) -> io::Lines<io::BufReader<File>> {
+    let file = File::open(path).expect("Could not read input");
+    let buf_reader = BufReader::new(file);
+    buf_reader.lines()
 }
