@@ -1,0 +1,4 @@
+profile = default
+margin = 120
+break-cases = toplevel
+if-then-else = k-r

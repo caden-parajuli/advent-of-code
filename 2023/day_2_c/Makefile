@@ -2,21 +2,21 @@ CC=clang
 CFLAGS=-g -O2
 
 COMMON=common.c
-DAY1=day_1
-DAY2=day_2
+PART1=part_1
+PART2=part_2
 
 .PHONY: all
 
-all: $(DAY1) $(DAY2)
+all: $(PART1) $(PART2)
 
-$(DAY1): $(COMMON) $(DAY1).c
+$(PART1): $(COMMON) $(PART1).c
 	$(CC) $(CFLAGS) $^ -o $@ 
 
-$(DAY2): $(COMMON) $(DAY2).c
+$(PART2): $(COMMON) $(PART2).c
 	$(CC) $(CFLAGS) $^ -o $@ 
 
 
 .PHONY: clean
 
 clean:
-	@rm $(DAY1) $(DAY2)
+	@rm $(PART1) $(PART2)
