@@ -1,0 +1,1 @@
+Thanks to the quadratic formula, this one was remarkably easy, which I'm thankful for, since writing Python code takes me back to when I was a highschooler implementing RSA in the worst language I could have chosen.
