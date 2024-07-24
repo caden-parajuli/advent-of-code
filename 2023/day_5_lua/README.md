@@ -1,0 +1,3 @@
+Today required a surprising amount of thought for such early on in AoC. My solution for part 2 uses a forward-reasoning range-based approach. I briefly toyed with the idea of backward reasoning, but it seemed like it would take longer. I'm really starting to see how the language I use affects the approach I take to the problem.
+
+It's also been a while since I've written any Lua, so the code quality here isn't great. Using metatables for range arithmetic probably would have made the part 2 solution much cleaner, but this works for a program as short-lived as this (and I didn't want to relearn metatables just to make one script that no one will ever edit just a little cleaner).
