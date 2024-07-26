@@ -1,0 +1,126 @@
+(use-modules (ice-9 textual-ports)
+             (srfi srfi-1))
+
+(define filename "input")
+
+(define (read_input filename)
+  (call-with-input-file filename
+    (lambda (file)
+      (let lp ((lines '())
+               (line (get-line file)))
+        (if (eof-object? line)
+          lines
+          (lp (cons line lines) (get-line file)))))))
+
+(define (cardval card)
+  (case card
+    ((#\J) 0)
+    ((#\2) 1)
+    ((#\3) 2)
+    ((#\4) 3)
+    ((#\5) 4)
+    ((#\6) 5)
+    ((#\7) 6)
+    ((#\8) 7)
+    ((#\9) 8)
+    ((#\T) 9)
+    ((#\Q) 10)
+    ((#\K) 11)
+    ((#\A) 12)))
+
+(define (score hand)
+  (let* ((cardss (car (string-split hand #\ )))
+         (cardsl (string->list cardss)))
+    (letrec ((lp (lambda (cards head tail two two_pair three four five two_char val)
+                   (if (eq? tail '())
+                     `(,(cond
+                          (five 6)
+                          (four 5)
+                          ((and three two) 4)
+                          (three 3)
+                          (two_pair 2)
+                          (two 1)
+                          (else 0))
+                        ,(+ (* val 13) (cardval head))
+                        ,(string-count cards #\J))
+                     (if (eq? head #\J)
+                       (lp cards (car tail) (cdr tail) two two_pair three four five two_char (* val 13))
+                       (let* ((count (string-count cards head))
+                              (ntwo (or two (eq? count 2)))
+                              (ntwo_pair (or two_pair (and two (eq? count 2) (not (eq? two_char head)))))
+                              (nthree (or three (eq? count 3)))
+                              (nfour (or four (eq? count 4)))
+                              (nfive (or five (eq? count 5))))
+                         (lp cards (car tail) (cdr tail) ntwo ntwo_pair nthree nfour nfive (if (and ntwo (not two)) head two_char) (+ (* val 13) (cardval head)))))))))
+      (lp cardss (car cardsl) (cdr cardsl) #f #f #f #f #f #\c 0))))
+
+(define (j_score hand)
+  (let* ((scored (score hand))
+         (kind (car scored))
+         (value (cadr scored))
+         (jokers (caddr scored))
+         (kind_with_j 
+           (case kind
+             ((0) (case jokers
+                  ((0) 0)
+                  ((1) 1)
+                  ((2) 3)
+                  ((3) 5)
+                  ((4) 6)
+                  ((5) 6)
+                  (else (error "Too many cards!"))))
+             ((1) (case jokers
+                  ((0) 1)
+                  ((1) 3)
+                  ((2) 5)
+                  ((3) 6)
+                  (else (error "Pair with too many jokers"))))
+             ((2) (case jokers
+                  ((0) 2)
+                  ((1) 4)
+                  (else (error "Two-pair with too many jokers"))))
+             ((3) (case jokers
+                  ((0) 3)
+                  ((1) 5)
+                  ((2) 6)
+                  (else (error "Three of a kind with too many jokers"))))
+             ((4) (case jokers
+                  ((0) 4)
+                  (else (error "Full house with too many jokers"))))
+             ((5) (case jokers
+                  ((0) 5)
+                  ((1) 6)
+                  (else (error "Four of a kind with too many jokers"))))
+             ((6) (case jokers
+                  ((0) 6)
+                  (else (error "Five of a kind with too many jokers"))))
+             (else (error "Bad kind")))))
+    `(,kind_with_j ,value)))
+
+(define (hand_less hand1 hand2)
+  (let* ((cards1s (car (string-split hand1 #\ )))
+         (cards2s (car (string-split hand2 #\ )))
+         (cards1 (string->list cards1s))
+         (cards2 (string->list cards2s)))
+             ;; If efficiency mattered for this, we could compute this score once for each card and sort based on that
+             (let* ((score1 (j_score hand1))
+                    (score2 (j_score hand2)))
+               (if (= (car score1) (car score2))
+                 (< (cadr score1) (cadr score2))
+                 (< (car score1) (car score2))))))
+
+(define (points line)
+  (string->number (cadr (string-split line #\ ))))
+
+(let* ((hands (sort (read_input filename) hand_less))
+       (final (fold 
+                (lambda (y ix)
+                  (let ((i (car ix))
+                        (x (cadr ix)))
+                    `( ,(+ i 1)
+                       ,(+ x (* (points y) i)))))
+                '(1 0)
+                hands)))
+    (display (cadr final))
+    (display "\n"))
+

@@ -22,7 +22,7 @@ These are programming languages I will be using for each day, listed in differen
 4. Nim
 5. Lua
 6. Python
-7. Scheme
+7. Guile Scheme
 8. JavaScript
 
 ### Have Used at Least Once
