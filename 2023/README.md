@@ -31,7 +31,7 @@ These are programming languages I will be using for each day, listed in differen
 10. Haskell
 11. Fish
 12. Dart
-13. Intel x86 Assembly
+13. Intel x86_64 Assembly (FASM)
 
 ### Have Wanted to Use
 
