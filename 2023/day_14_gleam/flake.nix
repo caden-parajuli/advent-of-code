@@ -18,7 +18,6 @@
           buildInputs = [
             gleam
             erlang
-            erlang-ls
           ];
           LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
         };
