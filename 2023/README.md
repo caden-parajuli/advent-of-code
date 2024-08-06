@@ -13,21 +13,21 @@ These are programming languages I will be using for each day, listed in differen
 
 ### Regularly Used
 
-1. Rust
-2. C
-3. OCaml
+1.  Rust
+2.  C
+3.  OCaml
 
 ### Comfortable Using/Used to Use
 
-4. Nim
-5. Lua
-6. Python
-7. Guile Scheme
-8. JavaScript
+4.  Nim
+5.  Lua
+6.  Python
+7.  Guile Scheme
+8.  JavaScript
 
 ### Have Used at Least Once
 
-9. Java
+9.  Java
 10. Haskell
 11. Fish
 12. Dart
@@ -47,6 +47,6 @@ These are programming languages I will be using for each day, listed in differen
 ### Have Never Wanted to Use
 
 22. Prolog
-23. F#
+23. FORTRAN
 24. Perl
 25. C#
