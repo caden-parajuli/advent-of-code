@@ -1,0 +1,42 @@
+filename = "input";
+file = fileread (filename);
+
+inp = ostrsplit (file, "\n", true);
+lines = cell (3, numel (inp));
+for i = 1:numel (inp)
+    lines(:, [i]) = ostrsplit (inp{i}, " ");
+end
+
+points = [];
+points(1, 1) = 0;
+points(2, 1) = 0;
+num_points = 0;
+
+x = 0;
+y = 0;
+for i = 1:numel (lines) / 3
+    dir = str2num (lines{3, i}(end - 1));
+    num = hex2dec (lines{3, i}(3 : end - 2));
+    num_points = num_points + num;
+    if dir == 0
+        x = x + num;
+    elseif dir == 2
+        x = x - num;
+    elseif dir == 3
+        y = y + num;
+    elseif dir == 1
+        y = y - num;
+    else
+        "Error"
+    end
+    points(1, i) = x;
+    points(2, i) = y;
+end
+
+area = polyarea (points(1, :), points(2, :));
+
+% Pick's Theorem
+interior = area - num_points / 2 + 1;
+
+total = num_points + interior;
+printf ("Part 2 final total: %d\n", total);
