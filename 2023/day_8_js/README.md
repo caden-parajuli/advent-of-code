@@ -15,4 +15,4 @@ x = z_2 mod n_2
 x = z_k mod n_k
 ```
 
-Which can be solved using the Chinese Remainder Theorem. Technically it is possible that loops contain multiple Z values, but this merely creates at most a few more such systems, each of which can be solved quickly. In practice, the AoC inputs appear to always be aufficiently nice that none of these techniques are necessary.
+Which can be solved using the Chinese Remainder Theorem. Technically it is possible that loops contain multiple Z values, but this merely creates at most a few more such systems, each of which can be solved quickly. In practice, the AoC inputs appear to always be sufficiently nice that none of these techniques are necessary.
