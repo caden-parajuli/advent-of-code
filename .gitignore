@@ -3,3 +3,7 @@ input.*
 input
 test_input
 test_input.*
+testinput
+testinput.*
+
+**/.direnv/
