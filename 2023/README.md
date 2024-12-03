@@ -46,7 +46,7 @@ These are programming languages I will be using for each day, listed in differen
 
 ### Have Never Wanted to Use
 
-22. Prolog
+22. Elixir
 23. FORTRAN
 24. Perl
 25. C#
