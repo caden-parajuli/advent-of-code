@@ -18,10 +18,10 @@ func main() {
 	input := utils.ReadString(inputName)
 
 	total := part1(input)
-	fmt.Printf("Day 2 Part 1 total: %d\n", total)
+	fmt.Printf("Day 3 Part 1 total: %d\n", total)
 
 	total = part2(input)
-	fmt.Printf("Day 2 Part 2 total: %d\n", total)
+	fmt.Printf("Day 3 Part 2 total: %d\n", total)
 }
 
 func part1(input string) int {

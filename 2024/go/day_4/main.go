@@ -17,10 +17,10 @@ func main() {
 	lineLen = len(input[0])
 
 	total := part1()
-	fmt.Printf("Day 2 Part 1 total: %d\n", total)
+	fmt.Printf("Day 4 Part 1 total: %d\n", total)
 
 	total = part2()
-	fmt.Printf("Day 2 Part 2 total: %d\n", total)
+	fmt.Printf("Day 4 Part 2 total: %d\n", total)
 }
 
 func part1() int {
